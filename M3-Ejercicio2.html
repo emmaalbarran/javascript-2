@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Calculadora de Interés de Crédito</title>
+</head>
+<body>
+<h1>Calculadora de Interés de Crédito</h1>
+
+<h3>Intereses por Plan:</h3>
+<ul id="listaIntereses">
+</ul>
+
+<script>
+
+const planesDeCredito = [
+  { nombre: 'Plan 001', capital: 150000, plazo: 30, tasa: 15 },
+  { nombre: 'Plan 002', capital: 300000, plazo: 180, tasa: 10 },
+  { nombre: 'Plan 003', capital: 485000, plazo: 60, tasa: 23 }
+];
+
+let informacionIntereses = [];
+
+function calcularIntereses() {
+  const listaIntereses = document.getElementById('listaIntereses');
+  listaIntereses.innerHTML = ''; 
+
+  planesDeCredito.forEach(plan => {
+    const interes = (plan.capital * plan.plazo * plan.tasa) / 100;
+    informacionIntereses.push({ nombre: plan.nombre, interes: interes });
+
+    const elemento = document.createElement('li');
+    elemento.textContent = `${plan.nombre}: Capital: $${plan.capital}, Plazo: ${plan.plazo} días, Tasa: ${plan.tasa}%, Interés: $${interes.toFixed(2)}`;
+    listaIntereses.appendChild(elemento);
+  });
+}
+
+window.onload = calcularIntereses;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de presupuesto</title>
+</head>
+<body>
+
+<h1>Calculadora de Presupuesto</h1>
+
+<form id="presupuestoForm">
+    <label for="ingresoTotal">Ingrese su ingreso total:</label>
+    <input type="number" id="ingresoTotal" required>
+    <br>
+
+    <button type="submit">Calcular Presupuesto</button>
+</form>
+
+<div id="resultados">
+    <p id="gastosNecesarios"></p>
+    <p id="gastosOpcionales"></p>
+    <p id="ahorroEInversion"></p>
+</div>
+
+<script>
+    document.getElementById('presupuestoForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var ingresoTotal = parseFloat(document.getElementById('ingresoTotal').value);
+        var gastosNecesarios = ingresoTotal * 0.5;
+        var gastosOpcionales = ingresoTotal * 0.3;
+        var ahorroEInversion = ingresoTotal * 0.2;
+
+        if (!isNaN(ingresoTotal) && ingresoTotal > 0) {
+            document.getElementById('gastosNecesarios').textContent = "Monto para Gastos Necesarios: $" + gastosNecesarios.toFixed(2);
+            document.getElementById('gastosOpcionales').textContent = "Monto para Gastos Opcionales: $" + gastosOpcionales.toFixed(2);
+            document.getElementById('ahorroEInversion').textContent = "Monto para Ahorro e Inversión: $" + ahorroEInversion.toFixed(2);
+        } else {
+            document.getElementById('resultados').textContent = "Por favor, ingrese un valor válido para el ingreso total.";
+        }
+    });
+</script>
+
+</body>
+</html>
+

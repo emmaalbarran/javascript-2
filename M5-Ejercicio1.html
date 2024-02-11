@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto de Equilibrio</title>
+</head>
+<body>
+
+<h1>Calculadora del Punto de Equilibrio</h1>
+
+<form id="formulario">
+    <label for="costosFijos">Costos Fijos:</label>
+    <input type="number" id="costosFijos" required>
+    <br>
+
+    <label for="precioVenta">Precio de Venta por unidad:</label>
+    <input type="number" id="precioVenta" required>
+    <br>
+
+    <label for="costosVariables">Costos Variables por unidad:</label>
+    <input type="number" id="costosVariables" required>
+    <br>
+
+    <input type="submit" value="Calcular Punto de Equilibrio">
+</form>
+
+<div id="resultado"></div>
+
+<script>
+    document.getElementById('formulario').onsubmit = function(event) {
+        event.preventDefault();
+
+        var costosFijos = parseFloat(document.getElementById('costosFijos').value);
+        var precioVenta = parseFloat(document.getElementById('precioVenta').value);
+        var costosVariables = parseFloat(document.getElementById('costosVariables').value);
+
+        var puntoEquilibrio = costosFijos / (precioVenta - costosVariables);
+
+        if (!isNaN(puntoEquilibrio) && puntoEquilibrio > 0) {
+            document.getElementById('resultado').textContent = "El Punto de Equilibrio es: " + puntoEquilibrio.toFixed(2) + " unidades.";
+        } else {
+            document.getElementById('resultado').textContent = "Por favor, ingrese valores válidos para realizar el cálculo.";
+        }
+    }
+</script>
+
+</body>
+</html>
